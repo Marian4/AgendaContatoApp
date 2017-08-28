@@ -1,3 +1,4 @@
+import datetime
 class telefone
     def main(self, Numero, DDD, CodigoPais):
         self.Numero = Numero
