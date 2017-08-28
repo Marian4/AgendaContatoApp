@@ -5,8 +5,8 @@ class Agenda():
         self.proprietario = proprietario
         self.contatos = []
 
-    def AdicionaContado (self, contato):
-        self.contatos.append(contato)
+    def AdicionaContado (self, Pessoa):
+        self.contatos.append(Pessoa)
 
     def ListarContato (self):
         for contatos in self.contatos:
