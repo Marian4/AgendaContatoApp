@@ -1,29 +1,42 @@
 import json
-
+from Telefone import Telefone
 class Agenda():
     def __init__(self, proprietario):
         self.proprietario = proprietario
-        self.contatos = []
+        self.contatos = {}
+        self.quantContatos = 0
 
-    def AdicionaContado (self, Pessoa):
-        self.contatos.append(Pessoa)
+    def AdicionaContato (self):
+        nome = input("Digite o nome do contato:")
+        #pedir nascimento
+        #peidr email
+        pessoa = input("Digite o nome do contato:")
+        ddd = input("Digite o ddd:")
+        numero = input("Digite o número:")
+        codigoPais = input("Digite o codigoPais:")
+        telefone = Telefone(numero,ddd,codigoPais)
+        self.contatos[pessoa] = numero
+        self.quantContatos += 1
 
     def ListarContato (self):
-        for contatos in self.contatos:
-            print (contatos)
-        def __str__ (self):
-            return"%s" % (self.contatos)
+        for contato in self.contatos:
+            print (contato,":+%s(%s) %s"%(self.contatos[contato].CodigoPais, self.contatos[contato].DDD, self.contatos[contato].Numero))
+        '''def __str__ (self):
+            return"%s" % (self.contatos)'''
 
-    def pesquisar(self, nome):
+    def pesquisar(self):
+        nome = input("Digite o nome do contato:")
         nome = nome.lower()
-        for a, b in enumerate (Agenda) :
-            if b [0].lower() == nome :
-                return (a)
+        for contato in self.contatos:
+            if contato.lower == nome:
+                print(contato, ":+%s(%s) %s" % (
+                self.contatos[contato].CodigoPais, self.contatos[contato].DDD, self.contatos[contato].Numero))
 
-        return (None)
+
+
 
     def QuantContatos(self):
-        return len(self.contatos)
+        print("Essa agenda tem %i contatos."%self.quantContatos)
 
     def ExcluirContato(self, nome):
         p = self.pesquisar(nome)
