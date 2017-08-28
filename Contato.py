@@ -1,5 +1,6 @@
 import datetime
-class Contato():
+from Telefone import Telefone
+class Contato(Telefone):
     def __init__(self, pessoa, telefones):
         self.criacao = datetime.datetime().strftime("%y-%m-%d")
         self.pessoa = pessoa
