@@ -13,7 +13,7 @@ def main():
 
 
     while True:
-        print("Escolha uma opção: ")
+        print("\nEscolha uma opção: ")
         print("1- Adicionar contato")
         print("2- Listar Contatos")
         print("3- Pesquisar contato")
@@ -23,7 +23,7 @@ def main():
         opcao = int(input())
 
         if opcao == 1:
-            a1.AdicionaContado(Pessoa)
+            a1.AdicionaContato()
         elif opcao == 2:
             a1.ListarContato()
         elif opcao == 3:
@@ -31,7 +31,7 @@ def main():
         elif opcao == 4:
             a1.QuantContatos()
         elif opcao == 5:
-            a1.ExcluirContato()
+            a1.ExcluirContato(Contato)
         elif opcao == 6:
             break
 
