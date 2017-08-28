@@ -1,9 +1,4 @@
 import datetime
-class Pessoa():
-    def main(self, nome, nascimento, email):
-        self.nome = nome
-        self.nascimento = nascimento(datetime.date(2001, 4, 26))
-        self.email = email
 class Agenda():
     def main(self, proprietario, contato):
         self.proprietario = proprietario
@@ -22,4 +17,17 @@ class Agenda():
         pass
 
 
+class Pessoa():
+    def main(self, nome, nascimento, email):
+        global Agenda
+        self.nome = nome
+        self.nascimento = nascimento(datetime.date(2001, 4, 26))
+        self.email = email
+        Agenda.append([nome, nascimento, email])
 
+    def pesquisa(nome) :
+        nome = nome.lower()
+        for a, b in enumerate (Agenda) :
+            if b [0].lower() == nome :
+                return (a)
+            return (None)
