@@ -2,7 +2,7 @@ import datetime
 from Telefone import Telefone
 class Contato(Telefone):
     def __init__(self, pessoa, telefones):
-        self.criacao = datetime.date.today().strftime("%y/%m/%d")
+        self.criacao = datetime.date.today().strftime("%d/%m/%Y")
         self.pessoa = pessoa
         self.telefones = telefones
 
