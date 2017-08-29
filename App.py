@@ -5,7 +5,7 @@ from Pessoa import Pessoa
 from Telefone import Telefone
 
 def main():
-    a1 = Agenda("sajdn")
+    a1 = Agenda("eu","meunascimento","@meuemail")
 
     #a1.AdicionaContado(Contato(Pessoa("Rennan", "23/34/323245", "hotmail").__dict__, [Telefone("8888", 83, "+55").__dict__]).__dict__)
     #a1.salvarContatos()
@@ -27,11 +27,11 @@ def main():
         elif opcao == 2:
             a1.ListarContato()
         elif opcao == 3:
-            a1.pesquisar()
+            a1.pesquisarContato(1)
         elif opcao == 4:
             a1.QuantContatos()
         elif opcao == 5:
-            a1.ExcluirContato(Contato)
+            a1.ExcluirContato()
         elif opcao == 6:
             break
 
