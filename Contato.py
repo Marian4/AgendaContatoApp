@@ -1,6 +1,5 @@
 import datetime
-from Telefone import Telefone
-class Contato(Telefone):
+class Contato():
     def __init__(self, pessoa, telefones):
         self.criacao = datetime.date.today().strftime("%d/%m/%Y")
         self.pessoa = pessoa
@@ -9,5 +8,3 @@ class Contato(Telefone):
     def listarTelefone(self):
         for telefone in self.telefones:
             print (telefone)
-        '''def __str__ (self):
-            return"%s" % (self.telefone)'''

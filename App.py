@@ -1,16 +1,20 @@
+import time
 import json
 from Agenda import Agenda
-from Contato import Contato
-from Pessoa import Pessoa
-from Telefone import Telefone
 
 def main():
-    a1 = Agenda("eu","meunascimento","@meuemail")
-
-    #a1.AdicionaContado(Contato(Pessoa("Rennan", "23/34/323245", "hotmail").__dict__, [Telefone("8888", 83, "+55").__dict__]).__dict__)
-    #a1.salvarContatos()
-
-
+    try:
+        contatos = open("Agenda.json", "r")
+        print("=========== Agenda aberta. ===========")
+        p = open("Proprietario.json","r")
+        proprietario = json.load(p)
+        a1 = Agenda(proprietario['nome'], proprietario['nascimento'], proprietario['email'], json.load(contatos))
+    except FileNotFoundError:
+        print("=========== Crie sua agenda! ===========\n")
+        nomep = input("Digite seu nome:")
+        nascimentop = input("Digite a data do seu nascimento:")
+        emailp = input("Digite seu email:")
+        a1 = Agenda(nomep,nascimentop,emailp,[])
 
     while True:
         print("\nEscolha uma opção: ")
@@ -33,6 +37,9 @@ def main():
         elif opcao == 5:
             a1.ExcluirContato()
         elif opcao == 6:
+            print("=========== Saindo... ===========")
+            time.sleep(2)
+            print("=========== Você saiu. ===========")
             break
 
 

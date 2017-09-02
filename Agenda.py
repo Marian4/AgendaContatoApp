@@ -1,11 +1,17 @@
 import json
+import time
 from Telefone import Telefone
 from Pessoa import Pessoa
 from Contato import Contato
 class Agenda():
-    def __init__(self, nomeProprietario, nascimentoProprietario, emailProprietario):
+    def __init__(self, nomeProprietario, nascimentoProprietario, emailProprietario,contatos):
         self.proprietario = Pessoa(nomeProprietario,nascimentoProprietario,emailProprietario)
-        self.contatos = []
+        p = open("Proprietario.json","w")
+        proprietario = json.dumps(self.proprietario.__dict__)
+        p.write(proprietario)
+        p.close()
+        self.contatos = contatos
+        self.salvarContatos()
 
 
     def AdicionaContato (self):
@@ -18,56 +24,57 @@ class Agenda():
         ddd = input("DDD:")
         numero = input("Número:")
         telefone = Telefone(numero,ddd,codigoPais)
-        telefones.append(telefone)
+        telefones.append(telefone.__dict__)
         outroTelefone = eval(input("Adicionar outro telefone?(1)-sim,(2)-não"))
+        #talvez seja bom usar excessão aqui tbm
         while outroTelefone == 1:
             codigoPais = input("Código do país:")
             ddd = input("DDD:")
             numero = input("Número:")
             telefone = Telefone(numero, ddd, codigoPais)
-            telefones.append(telefone)
-            outroTelefone = eval(input("Adicionar outro telefone?(1)-sim,(2)-não"))
-        contato = Contato(pessoa,telefones)
-        self.contatos.append(contato)
+            telefones.append(telefone.__dict__)
+            outroTelefone = eval(input("Adicionar outro telefone?(1)-sim,(2)-não:"))
+        contato = Contato(pessoa.__dict__,telefones)
+        self.contatos.append(contato.__dict__)
+        self.salvarContatos()
+
     def ListarContato (self):
+        print()
         for contato in self.contatos:
-            print(contato.pessoa.nome)
+            pessoa = contato['pessoa']
+            print(pessoa['nome'])
 
     def pesquisarContato(self,opcao):
         nome = input("Digite o nome do contato:")
         nome = nome.lower()
         for contato in self.contatos:
-            if contato.pessoa.nome.lower() == nome:
+            pessoa = contato['pessoa']
+            telefones =contato['telefones']
+            if pessoa['nome'].lower() == nome:
                 if opcao == 1:
-                    print("->Email:",contato.pessoa.email)
+                    print("->Email:",pessoa['email'])
                     print("->Telefones:")
-                    for telefone in contato.telefones:
-                        print("%s(%s)%s"%(telefone.CodigoPais, telefone.DDD, telefone.Numero))
+                    for telefone in telefones:
+                        print("%s(%s)%s"%(telefone['CodigoPais'], telefone['DDD'], telefone['Numero']))
+                    break
                 elif opcao == 2:
                     self.contatos.remove(contato)
+                    print("Excluindo...")
+                    time.sleep(2)
                     print("Contato excluído.")
+                    self.salvarContatos()
+                    break
+            if self.contatos[len(self.contatos)-1] == contato:
+                print("Contato não encontrado.")
 
     def QuantContatos(self):
-        quantContatos = 0
-        for i in self.contatos:
-            quantContatos +=1
-        print("\nEssa agenda tem %i contatos."%quantContatos)
+        print("\nEssa agenda tem %i contato(s)."%len(self.contatos))
 
     def ExcluirContato(self):
         p = self.pesquisarContato(2)
-#botar uma certa coisa de opção no pesquisar que o usuário n vai precisar escolher o parametro opção vai receber 1 ou 2, no pesquisarcontatps vai ter o 1 e por isso vai mostrar os contatos da pessoa e o outro n
-        '''if p != None:
-            del self.contatos[p]
-        while True:
-            try:
-                p == None
-                break
-            except:
-                print("Nao encontrado")'''
 
     def salvarContatos(self):
-        f = open("Agenda.json", "w")
-
-        dic = json.dumps(self.contatos)
-        f.write(dic)
-        f.close()
+        arquivo = open("Agenda.json", "w")
+        contatos_jsn = json.dumps(self.contatos)
+        arquivo.write(contatos_jsn)
+        arquivo.close()
