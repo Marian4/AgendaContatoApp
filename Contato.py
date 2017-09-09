@@ -1,3 +1,6 @@
+'''
+    Contato - lista os telefones da agenda
+'''
 import datetime
 class Contato():
     def __init__(self, pessoa, telefones):
