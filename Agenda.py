@@ -1,3 +1,6 @@
+'''
+    Agenda - reprensenta a agenda telefônica.
+'''
 import json
 import time
 from Telefone import Telefone
@@ -13,7 +16,7 @@ class Agenda():
         self.contatos = contatos
         self.salvarContatos()
 
-
+# Adicionar um novo contado
     def AdicionaContato (self):
         nome = input("Nome:")
         nascimento = input("Nascimento:")
@@ -26,7 +29,6 @@ class Agenda():
         telefone = Telefone(numero,ddd,codigoPais)
         telefones.append(telefone.__dict__)
         outroTelefone = eval(input("Adicionar outro telefone?(1)-sim,(2)-não"))
-        #talvez seja bom usar excessão aqui tbm
         while outroTelefone == 1:
             codigoPais = input("Código do país:")
             ddd = input("DDD:")
@@ -38,12 +40,14 @@ class Agenda():
         self.contatos.append(contato.__dict__)
         self.salvarContatos()
 
+    # Listar contatos presentes na agenda.
     def ListarContato (self):
         print()
         for contato in self.contatos:
             pessoa = contato['pessoa']
             print(pessoa['nome'])
-
+           
+   # Buscar contato pelo nome
     def pesquisarContato(self,opcao):
         nome = input("Digite o nome do contato:")
         nome = nome.lower()
@@ -67,12 +71,15 @@ class Agenda():
             if self.contatos[len(self.contatos)-1] == contato:
                 print("Contato não encontrado.")
 
+    # Quantidade de contatos da lista.
     def QuantContatos(self):
         print("\nEssa agenda tem %i contato(s)."%len(self.contatos))
 
+    # Excluir contato da lista.
     def ExcluirContato(self):
         p = self.pesquisarContato(2)
 
+    #Salvar contato adicionado.
     def salvarContatos(self):
         arquivo = open("Agenda.json", "w")
         contatos_jsn = json.dumps(self.contatos)
