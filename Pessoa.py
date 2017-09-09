@@ -1,3 +1,6 @@
+'''
+    Pessoa - Agregação de contato.
+'''
 class Pessoa():
     def __init__ (self, nome, nascimento, email):
         global Agenda
