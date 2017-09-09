@@ -3,6 +3,7 @@ import json
 from Agenda import Agenda
 
 def main():
+    # Manupilação de arquivos e json
     try:
         contatos = open("Agenda.json", "r")
         print("=========== Agenda aberta. ===========")
@@ -16,7 +17,8 @@ def main():
         emailp = input("Digite seu email:")
         a1 = Agenda(nomep,nascimentop,emailp,[])
 
-    while True:
+     # Menu da agenda.
+ while True:
         print("\nEscolha uma opção: ")
         print("1- Adicionar contato")
         print("2- Listar Contatos")
