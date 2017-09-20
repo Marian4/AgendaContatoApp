@@ -1,5 +1,5 @@
 '''
-    Telefone - Numero de telefone do usuario da agenda telefônica.
+    Telefone - Agregação de contato
 '''
 class Telefone ():
     def __init__ (self, Numero, DDD, CodigoPais):
